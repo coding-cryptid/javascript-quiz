@@ -1,0 +1,7 @@
+#quiz-container, #score-container {
+    background-color: lemonchiffon;
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
