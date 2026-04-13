@@ -5,6 +5,8 @@ const optionsContainer = document.getElementById('options-container');
 const nextButton = document.getElementById('next-button');
 
 let score = 0;
+let currentQuestionIndex = 0;
+let selectedOption = null;
 
 const quizData = [{
     question: "Which array method adds an element to the end of an array?",
@@ -25,6 +27,8 @@ const quizData = [{
 }];
 
 function loadQuestions() {
+    const currentQuestion = quizData[currentQuestionIndex];
+    questionContainer.textContent = currentQuestion.question;
     currentQuestion.options.forEach((option, index) => {
         const optionButton = document.createElement('button');
         optionButton.textContent = option;
@@ -33,12 +37,17 @@ function loadQuestions() {
     });
 }
 
+function selectOption(index) {
+    selectedOption = index;
+    if (selectedOption === currentQuestion.answer) {
+        checkAnswer();
+    }
+}
+
 function checkAnswer() {
     if (selectedOption === currentQuestion.answer) {
         score++;
-    }
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
+    } else if (currentQuestionIndex < quizData.length) {
         loadQuestions();
     } else {
         showScore();
