@@ -27,15 +27,23 @@ const quizData = [{
 }];
 
 function loadQuestions() {
+    optionsContainer.innerHTML = "";
     const currentQuestion = quizData[currentQuestionIndex];
     questionContainer.textContent = currentQuestion.question;
     currentQuestion.options.forEach((option, index) => {
-        const optionButton = document.createElement('button');
-        optionButton.textContent = option;
-        optionButton.addEventListener('click',() => selectOption(index));
-        optionsContainer.appendChild(optionButton);
+        const button = document.createElement('button');
+        button.textContent = option;
+        button.addEventListener('click', () => {
+            selectedOption = index;
+        });
+        optionsContainer.appendChild(button);
     });
 }
+
+nextButton.addEventListener('click', loadQuestions);
+optionButton.addEventListener('click', checkAnswer);
+
+loadQuestions();
 
 function selectOption(index) {
     selectedOption = index;
@@ -45,19 +53,17 @@ function selectOption(index) {
 }
 
 function checkAnswer() {
+    const currentQuestion = quizData[currentQuestionIndex];
     if (selectedOption === currentQuestion.answer) {
         score++;
-    } else if (currentQuestionIndex < quizData.length) {
+    } 
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
         loadQuestions();
-    } else {
+    }
+    else {
         showScore();
-        const restartButton = document.createElement('button');
-        restartButton.textContent = 'Restart Quiz';
-        restartButton.addEventListener('click', restartQuiz);
-        scoreContainer.appendChild(restartButton);
     }
 }
 
-nextButton.addEventListener('click', loadQuestions);
-optionButton.addEventListener('click', checkAnswer);
 restartButton.addEventListener('click', restartQuiz);
