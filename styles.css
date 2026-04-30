@@ -1,5 +1,5 @@
 #quiz-container, #score-container {
-    background-color: lemonchiffon;
+    background-color: #f0f0f0;
     width: 50%;
     margin: 50px auto;
     text-align: center;
@@ -13,6 +13,21 @@
 }
 
 button {
-    background-color: lightcoral;
-    border-color: brown;
+    background-color: gray;
+    border-color: black;
+    color: #f0f0f0;
+    margin: 5px;
+    padding: 5px;
+}
+
+.incorrect {
+    background-color: red;
+    border-color: darkred;
+    color: white;
+}
+
+.correct {
+    background-color: green;
+    border-color: darkgreen;
+    color: white;
 }
